@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
         // Hareket uzayýnýn 2 boyuta indirgenmesi
         // X ve Y ekseni üzerindeki hareket giriþleri X ve Z eksenleri olmak üzere dönüþtürüldü.
-        var movementDirection = new Vector3(horizontal, 0, vertical);
+        var movementDirection = new Vector3(-horizontal, 0, -vertical);
 
         animator.SetBool("isRunning", movementDirection != Vector3.zero);   // Ya bu ya da alttaki
         //animator.SetBool("isRunning", rb.velocity != Vector3.zero);   // Ýkisinden birisi
