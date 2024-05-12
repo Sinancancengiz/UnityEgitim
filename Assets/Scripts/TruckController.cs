@@ -23,7 +23,7 @@ public class TruckController : MonoBehaviour
         if (collision.gameObject.tag != "Player") return; // ... deðilse, fonksion içinden çýk
         var player = collision.gameObject.GetComponent<PlayerController>();
 
-        var gold = player.loadGoldstoTruck();
+        var gold = player.LoadGoldstoTruck();
         currentGold += gold;
 
         for (int i = 0; i < currentGold; i++)

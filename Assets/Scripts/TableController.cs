@@ -16,7 +16,7 @@ public class TableController : MonoBehaviour
         if (collision.gameObject.tag != "Player") return; // ... deðilse, fonksion içinden çýk
         var player = collision.gameObject.GetComponent<PlayerController>();
 
-        if (player.collectGold())
+        if (player.CollectGold())
         {
             goldObject.SetActive(false);
             Invoke(nameof(ReloadGold), Random.Range(5f, 15f));  // Zaman olduðu için float

@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationDirection, rotationSpeed * Time.deltaTime);
     }
 
-    public bool collectGold()
+    public bool CollectGold()
     {
         if (carry == carryLimit) return false;
         
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         return true;   
     }
 
-    public int loadGoldstoTruck()
+    public int LoadGoldstoTruck()
     {
         var carryingGold = carry;
         if (carryingGold == 0) return 0;
