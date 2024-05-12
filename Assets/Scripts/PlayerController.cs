@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 10f;
     private Rigidbody rb;   // fizik iþlemleri için rigidboy'i tanýmladýk
     private Animator animator;  // Animasyon iþlemleri için
+    public List<GameObject> goldList;   // Karakterin elindeki altýnlarý tutan liste
+    public int carry;   // Gold counter
 
+    public int carryLimit => goldList.Count;    // Taþýma limiti
 
     private void Start()
     {
@@ -30,6 +33,8 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isRunning", movementDirection != Vector3.zero);   // Ya bu ya da alttaki
         //animator.SetBool("isRunning", rb.velocity != Vector3.zero);   // Ýkisinden birisi
 
+        animator.SetBool("isCarrying", carry != 0);
+
         if (movementDirection == Vector3.zero)
         {
             Debug.Log("Input yok");
@@ -42,6 +47,16 @@ public class PlayerController : MonoBehaviour
         // Movement drection yönünü ratation olarak kaydet.
         var rotationDirection = Quaternion.LookRotation(movementDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationDirection, rotationSpeed * Time.deltaTime);
+    }
+
+    public bool collectGold()
+    {
+        if (carry == carryLimit) return false;
+        
+        goldList[carry].gameObject.SetActive(true);
+        carry++;
+        return true;
+        
     }
 
 }

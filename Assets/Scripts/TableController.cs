@@ -5,22 +5,20 @@ using UnityEngine;
 public class TableController : MonoBehaviour
 {
     public GameObject goldObject;
+
+    public bool isGoldCollectable => goldObject.activeSelf;
     
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag != "Player") return;
+        if (!isGoldCollectable) return; // ... deðilse, fonksion içinden çýk
 
-        goldObject.SetActive(false);
-    }
+        if (collision.gameObject.tag != "Player") return; // ... deðilse, fonksion içinden çýk
+        var player = collision.gameObject.GetComponent<PlayerController>();
 
-    private void OnCollisionStay(Collision collision)
-    {
-        
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        
+        if (player.collectGold())
+        {
+            goldObject.SetActive(false);
+        }
     }
 }
