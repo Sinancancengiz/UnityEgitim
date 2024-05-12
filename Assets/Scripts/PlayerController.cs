@@ -10,11 +10,15 @@ public class PlayerController : MonoBehaviour
     private Animator animator;  // Animasyon iþlemleri için
     public List<GameObject> goldList;   // Karakterin elindeki altýnlarý tutan liste
     public int carry;   // Gold counter
+    
+    public float reduceSpeed = 0.5f;
+    private float baseMovementSpeed;
 
     public int carryLimit => goldList.Count;    // Taþýma limiti
 
     private void Start()
     {
+        baseMovementSpeed = movementSpeed;
         rb = GetComponent<Rigidbody>(); // Ayný GameObject üzerindeki rigidbody'e ulaþmak için GetComponent fonksiyonu kullanýldý
         // Ulaþmak için GetComponent fonksiyonu
 
@@ -55,8 +59,26 @@ public class PlayerController : MonoBehaviour
         
         goldList[carry].gameObject.SetActive(true);
         carry++;
-        return true;
-        
+
+        movementSpeed -= reduceSpeed;
+
+        return true;   
     }
 
+    public int loadGoldstoTruck()
+    {
+        var carryingGold = carry;
+        if (carryingGold == 0) return 0;
+
+        foreach (var gold in goldList)
+        {
+            gold.SetActive(false);  // gameObject.gameObject.gameObject.gameObject diye gidebilirim. gold zaten bir gameObject.
+                                    // Yazmaya gerek yok.
+        }
+
+        carry = 0;
+        movementSpeed = baseMovementSpeed;
+        //movementSpeed += carryingGold * reduceSpeed;
+        return carryingGold;
+    }
 }

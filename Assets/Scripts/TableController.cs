@@ -19,6 +19,12 @@ public class TableController : MonoBehaviour
         if (player.collectGold())
         {
             goldObject.SetActive(false);
+            Invoke(nameof(ReloadGold), Random.Range(5f, 15f));  // Zaman olduðu için float
         }
+    }
+
+    private void ReloadGold()
+    {
+        goldObject.SetActive(true);
     }
 }
