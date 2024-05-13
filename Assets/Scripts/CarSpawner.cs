@@ -29,6 +29,8 @@ public class CarSpawner : MonoBehaviour
             
             spawnedCar.AddComponent<CarController>();
 
+            Destroy(spawnedCar.gameObject, 5f);
+
             spawnTime = Random.Range(minTime, maxTime); // Ýlk oluþtuktan sonra oluþmalar için süre
         }
 
