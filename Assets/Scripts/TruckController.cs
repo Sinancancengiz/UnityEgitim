@@ -20,7 +20,7 @@ public class TruckController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag != "Player") return; // ... deðilse, fonksion içinden çýk
+        if (collision.gameObject.tag != "Player") return; // ... deðilse, fonksion içinden çýk. Deðeri bulamazsa hata vermesini önlüyor.
         var player = collision.gameObject.GetComponent<PlayerController>();
 
         var gold = player.LoadGoldstoTruck();
